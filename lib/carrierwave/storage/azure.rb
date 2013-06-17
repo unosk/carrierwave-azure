@@ -52,7 +52,7 @@ module CarrierWave
         end
 
         def content_type
-          @content_type = blob.properties[:content_type] if @content_type.nil? && blob.persent?
+          @content_type = blob.properties[:content_type] if @content_type.nil? && !blob.nil?
           @content_type
         end
 
