@@ -34,7 +34,7 @@ module CarrierWave
         def store!(file)
           @content = file.read
           @content_type = file.content_type
-          @connection.create_block_blob @uploader.azure_container, @path, @content
+          @connection.create_block_blob @uploader.azure_container, @path, @content, content_type: @content_type
           true
         end
 
