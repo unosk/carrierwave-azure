@@ -18,6 +18,12 @@ module CarrierWave
           uploader.azure_credentials.map do |key, val|
             ::Azure.config.send("#{key}=", val)
           end unless uploader.azure_credentials.nil?
+
+	  unless uploader.azure_host.nil?
+            ::Azure.config.storage_blob_host = uploader.azure_host
+            ::Azure.config.storage_table_host= uploader.azure_host
+            ::Azure.config.storage_queue_host= uploader.azure_host
+          end 
           ::Azure::BlobService.new
         end
       end
