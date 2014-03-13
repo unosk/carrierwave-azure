@@ -40,7 +40,7 @@ module CarrierWave
           until file_to_send.eof?
             i += 1
             @content = file_to_send.read 4194304 # Send 4MB chunk
-            @connection.create_blob_block @uploader.azure_container, @path, i.to_s, content
+            @connection.create_blob_block @uploader.azure_container, @path, i.to_s, @content
             blocks << i.to_s
           end
 
