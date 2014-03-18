@@ -36,9 +36,6 @@ module CarrierWave
           file_to_send  = ::File.open(file.file, 'rb')
           blocks        = []
 
-          file_size = file_to_send.size.to_f / 2**20
-          puts '%.2f' % file_size
-
           until file_to_send.eof?
             block_id = Base64.urlsafe_encode64(SecureRandom.uuid)
 
