@@ -35,15 +35,19 @@ module CarrierWave
           @content_type = file.content_type
           file_to_send  = ::File.open(file.file, 'rb')
           blocks        = []
-          i = 0
+
+          file_size = file_to_send.size.to_f / 2**20
+          puts '%.2f' % file_size
 
           until file_to_send.eof?
-            i += 1
+            block_id = Base64.urlsafe_encode64(SecureRandom.uuid)
+
             @content = file_to_send.read 4194304 # Send 4MB chunk
-            @connection.create_blob_block @uploader.azure_container, @path, i.to_s, @content
-            blocks << i.to_s
+            @connection.create_blob_block @uploader.azure_container, @path, block_id, @content
+            blocks << [block_id]
           end
 
+          # Commit block blobs
           @connection.commit_blob_blocks @uploader.azure_container, @path, blocks
 
           true
