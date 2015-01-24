@@ -15,9 +15,9 @@ module CarrierWave
 
       def connection
         @connection ||= begin
-          uploader.azure_credentials.map do |key, val|
-            ::Azure.config.send("#{key}=", val)
-          end unless uploader.azure_credentials.nil?
+          %i(storage_account_name storage_access_key).each do |key|
+            ::Azure.config.send("#{key}=", uploader.send("azure_#{key}"))
+          end
           ::Azure::BlobService.new
         end
       end

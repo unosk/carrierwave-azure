@@ -18,10 +18,8 @@ First configure CarrierWave with your Azure storage credentials
 
 ```ruby
 CarrierWave.configure do |config|
-  config.azure_credentials = {
-    storage_account_name: 'YOUR STORAGE ACCOUNT NAME',
-    storage_access_key:   'YOUR STORAGE ACCESS KEY'
-  }
+  config.azure_storage_account_name = 'YOUR STORAGE ACCOUNT NAME'
+  config.azure_storage_access_key = 'YOUR STORAGE ACCESS KEY'
   config.azure_container = 'YOUR CONTAINER NAME'
   config.azure_host = 'YOUR CDN HOST' # optional
 end
