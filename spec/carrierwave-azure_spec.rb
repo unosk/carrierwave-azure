@@ -9,6 +9,5 @@ describe CarrierWave::Uploader::Base do
     should respond_to(:azure_storage_account_name)
     should respond_to(:azure_storage_access_key)
     should respond_to(:azure_container)
-    should respond_to(:azure_host)
   end
 end

@@ -40,8 +40,8 @@ module CarrierWave
 
         def url(options = {})
           path = ::File.join @uploader.azure_container, @path
-          if @uploader.azure_host
-            "#{@uploader.azure_host}/#{path}"
+          if @uploader.asset_host
+            "#{@uploader.asset_host}/#{path}"
           else
             @connection.generate_uri(path).to_s
           end

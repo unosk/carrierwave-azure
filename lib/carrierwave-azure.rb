@@ -5,7 +5,6 @@ require 'carrierwave/storage/azure'
 class CarrierWave::Uploader::Base
   add_config :azure_storage_account_name
   add_config :azure_storage_access_key
-  add_config :azure_host
   add_config :azure_container
 
   configure do |config|
