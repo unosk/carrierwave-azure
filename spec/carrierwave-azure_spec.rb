@@ -8,6 +8,7 @@ describe CarrierWave::Uploader::Base do
   it 'should define azure options' do
     should respond_to(:azure_storage_account_name)
     should respond_to(:azure_storage_access_key)
+    should respond_to(:azure_storage_blob_host)
     should respond_to(:azure_container)
   end
 end
