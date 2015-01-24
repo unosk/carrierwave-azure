@@ -49,7 +49,7 @@ describe CarrierWave::Storage::Azure do
 
   describe '#store!' do
     before do
-      uploader.stub!(:store_path).and_return('test/dummy1.png')
+      allow(uploader).to receive(:store_path).and_return('test/dummy1.png')
       tempfile = Tempfile.new 'test.jpg'
       open(tempfile.path, 'w') do |f|
         f.print '1234567890'
@@ -73,7 +73,7 @@ describe CarrierWave::Storage::Azure do
 
   describe '#retrieve' do
     before do
-      uploader.stub!(:store_path).and_return('test/dummy2.png')
+      allow(uploader).to receive(:store_path).and_return('test/dummy2.png')
       storage.connection.create_block_blob(
         uploader.azure_container,
         'test/dummy2.png',
