@@ -60,7 +60,7 @@ module CarrierWave
           @content_type = new_content_type
         end
 
-        def exitst?
+        def exist?
           blob.nil?
         end
 
