@@ -18,7 +18,7 @@ module CarrierWave
           %i(storage_account_name storage_access_key storage_blob_host).each do |key|
             ::Azure.config.send("#{key}=", uploader.send("azure_#{key}"))
           end
-          ::Azure::BlobService.new
+          ::Azure::Blob::BlobService.new
         end
       end
 
