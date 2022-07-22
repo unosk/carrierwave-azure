@@ -1,4 +1,4 @@
-require 'azure'
+require 'azure/storage/blob'
 
 module CarrierWave
   module Storage
@@ -13,24 +13,28 @@ module CarrierWave
         CarrierWave::Storage::Azure::File.new(uploader, connection, uploader.store_path(identifer))
       end
 
+      # @return Azure::Storage::Blob::BlobService
       def connection
         @connection ||= begin
-          %i(storage_account_name storage_access_key storage_blob_host).each do |key|
-            ::Azure.config.send("#{key}=", uploader.send("azure_#{key}"))
-          end
-          ::Azure::Blob::BlobService.new
+          Azure::Storage::Blob::BlobService.create(
+            storage_account_name: uploader.azure_storage_account_name,
+            storage_access_key: uploader.azure_storage_access_key,
+            storage_blob_host: uploader.azure_storage_blob_host
+          )
         end
       end
 
       class File
         attr_reader :path
 
+        # @param connection [Azure::Storage::Blob::BlobService]
         def initialize(uploader, connection, path)
           @uploader = uploader
           @connection = connection
           @path = path
         end
 
+        # .create_block_blob from https://github.com/Azure/azure-storage-ruby/blob/master/blob/README.md
         def store!(file)
           @content = file.read
           @content_type = file.content_type

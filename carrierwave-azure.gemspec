@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ['Yusuke Shibahara']
   gem.email         = ['yusuke.shibahara@heathrow.co.jp']
   gem.summary       = %q{Windows Azure blob storage support for CarrierWave}
-  gem.description   = %q{Allows file upload to Azure with the officail sdk}
+  gem.description   = %q{Allows file upload to Azure with the new offical sdk}
   gem.homepage      = 'https://github.com/unosk/carrierwave-azure'
   gem.license       = 'MIT'
 
@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_dependency 'carrierwave'
-  gem.add_dependency 'azure'
+  gem.add_dependency 'azure-storage-blob'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec', '~> 3'
